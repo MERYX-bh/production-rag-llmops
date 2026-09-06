@@ -2,8 +2,7 @@ import pathlib
 import pytest
 
 from multi_doc_chat.src.document_chat.retrieval import ConversationalRAG
-from exception.custom_exception import DocumentPortalException
-
+from multi_doc_chat.exception.custom_exception import DocumentPortalException
 
 def test_conversationalrag_error_handling(tmp_dirs, stub_model_loader):
     rag = ConversationalRAG(session_id="s1")
