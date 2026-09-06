@@ -1,0 +1,13 @@
+{"timestamp": "2026-05-30T02:02:56.808785Z", "level": "info", "event": "Running in LOCAL mode: .env loaded"}
+{"timestamp": "2026-05-30T02:02:56.808785Z", "level": "info", "event": "Loaded GROQ_API_KEY from individual env var"}
+{"timestamp": "2026-05-30T02:02:56.809790Z", "level": "info", "event": "Loaded GOOGLE_API_KEY from individual env var"}
+{"keys": {"GROQ_API_KEY": "gsk_pN...", "GOOGLE_API_KEY": "AQ.Ab8..."}, "timestamp": "2026-05-30T02:02:56.809790Z", "level": "info", "event": "API keys loaded"}
+{"config_keys": ["embedding_model", "retriever", "llm"], "timestamp": "2026-05-30T02:02:56.816785Z", "level": "info", "event": "YAML config loaded"}
+{"session_id": "session_20260530_040256_412ed75f", "temp_dir": "data\\session_20260530_040256_412ed75f", "faiss_dir": "faiss_index\\session_20260530_040256_412ed75f", "sessionized": true, "timestamp": "2026-05-30T02:02:56.822793Z", "level": "info", "event": "ChatIngestor initialized"}
+{"uploaded": "data/NIPS-2017-attention-is-all-you-need-Paper.pdf", "saved_as": "data\\session_20260530_040256_412ed75f\\4e71eb38.pdf", "timestamp": "2026-05-30T02:02:56.826788Z", "level": "info", "event": "File saved for ingestion"}
+{"count": 11, "timestamp": "2026-05-30T02:02:57.308874Z", "level": "info", "event": "Documents loaded"}
+{"chunks": 210, "chunk_size": 200, "overlap": 20, "timestamp": "2026-05-30T02:02:57.318306Z", "level": "info", "event": "Documents split"}
+{"model": "models/embedding-001", "timestamp": "2026-05-30T02:02:57.320307Z", "level": "info", "event": "Loading embedding model"}
+HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/embedding-001:batchEmbedContents "HTTP/1.1 404 Not Found"
+HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/embedding-001:batchEmbedContents "HTTP/1.1 404 Not Found"
+{"error": "Error embedding content (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}", "timestamp": "2026-05-30T02:02:59.006269Z", "level": "error", "event": "Failed to build retriever"}

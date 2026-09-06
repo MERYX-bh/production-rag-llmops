@@ -1,0 +1,5 @@
+{"timestamp": "2026-05-30T02:05:51.869406Z", "level": "info", "event": "Running in LOCAL mode: .env loaded"}
+{"timestamp": "2026-05-30T02:05:51.870402Z", "level": "info", "event": "Loaded GROQ_API_KEY from individual env var"}
+{"timestamp": "2026-05-30T02:05:51.870402Z", "level": "info", "event": "Loaded GOOGLE_API_KEY from individual env var"}
+{"keys": {"GROQ_API_KEY": "gsk_pN...", "GOOGLE_API_KEY": "AQ.Ab8..."}, "timestamp": "2026-05-30T02:05:51.870402Z", "level": "info", "event": "API keys loaded"}
+{"error": "while parsing a block mapping\n  in \"C:\\Users\\meriem11\\Desktop\\LLMOPS\\multi_doc_chat\\config\\config.yaml\", line 2, column 3\nexpected <block end>, but found '<scalar>'\n  in \"C:\\Users\\meriem11\\Desktop\\LLMOPS\\multi_doc_chat\\config\\config.yaml\", line 3, column 37", "timestamp": "2026-05-30T02:05:51.875403Z", "level": "error", "event": "Failed to initialize ChatIngestor"}

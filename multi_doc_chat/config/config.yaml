@@ -1,0 +1,22 @@
+embedding_model:
+  provider: "openai"
+  model_name: "text-embedding-3-small"
+
+retriever:
+  top_k: 10
+  search_type: "mmr"
+  fetch_k: 20
+  lambda_mult: 0.5
+
+llm:
+  groq:
+    provider: "groq"
+    model_name: "openai/gpt-oss-20b"
+    temperature: 0
+    max_output_tokens: 2048
+
+  openai:
+    provider: "openai"
+    model_name: "gpt-4o-mini"
+    temperature: 0
+    max_output_tokens: 2048

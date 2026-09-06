@@ -1,0 +1,37 @@
+{"timestamp": "2026-05-31T10:30:13.212345Z", "level": "info", "event": "Running in LOCAL mode: .env loaded"}
+{"timestamp": "2026-05-31T10:30:13.212345Z", "level": "info", "event": "Loaded GROQ_API_KEY from individual env var"}
+{"timestamp": "2026-05-31T10:30:13.212345Z", "level": "info", "event": "Loaded GOOGLE_API_KEY from individual env var"}
+{"keys": {"GROQ_API_KEY": "gsk_pN...", "GOOGLE_API_KEY": "AQ.Ab8..."}, "timestamp": "2026-05-31T10:30:13.212345Z", "level": "info", "event": "API keys loaded"}
+{"config_keys": ["embedding_model", "retriever", "llm"], "timestamp": "2026-05-31T10:30:13.218766Z", "level": "info", "event": "YAML config loaded"}
+{"session_id": "session_20260531_123013_e9e1b3a8", "temp_dir": "data\\session_20260531_123013_e9e1b3a8", "faiss_dir": "faiss_index\\session_20260531_123013_e9e1b3a8", "sessionized": true, "timestamp": "2026-05-31T10:30:13.220427Z", "level": "info", "event": "ChatIngestor initialized"}
+{"uploaded": "data/NIPS-2017-attention-is-all-you-need-Paper.pdf", "saved_as": "data\\session_20260531_123013_e9e1b3a8\\16f848c8.pdf", "timestamp": "2026-05-31T10:30:13.223587Z", "level": "info", "event": "File saved for ingestion"}
+{"count": 11, "timestamp": "2026-05-31T10:30:13.831838Z", "level": "info", "event": "Documents loaded"}
+{"chunks": 210, "chunk_size": 200, "overlap": 20, "timestamp": "2026-05-31T10:30:13.842286Z", "level": "info", "event": "Documents split"}
+{"provider": "openai", "model": "text-embedding-3-small", "timestamp": "2026-05-31T10:30:13.842286Z", "level": "info", "event": "Loading embedding model"}
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+Loading faiss with AVX512 support.
+Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+Loading faiss with AVX2 support.
+Successfully loaded faiss with AVX2 support.
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+{"added": 1, "index": "faiss_index\\session_20260531_123013_e9e1b3a8", "timestamp": "2026-05-31T10:30:20.451009Z", "level": "info", "event": "FAISS index updated"}
+{"k": 5, "fetch_k": 20, "lambda_mult": 0.5, "timestamp": "2026-05-31T10:30:20.451009Z", "level": "info", "event": "Using MMR search"}
+{"timestamp": "2026-05-31T10:30:20.454767Z", "level": "info", "event": "Running in LOCAL mode: .env loaded"}
+{"timestamp": "2026-05-31T10:30:20.455219Z", "level": "info", "event": "Loaded GROQ_API_KEY from individual env var"}
+{"timestamp": "2026-05-31T10:30:20.455219Z", "level": "info", "event": "Loaded GOOGLE_API_KEY from individual env var"}
+{"keys": {"GROQ_API_KEY": "gsk_pN...", "GOOGLE_API_KEY": "AQ.Ab8..."}, "timestamp": "2026-05-31T10:30:20.455219Z", "level": "info", "event": "API keys loaded"}
+{"config_keys": ["embedding_model", "retriever", "llm"], "timestamp": "2026-05-31T10:30:20.459387Z", "level": "info", "event": "YAML config loaded"}
+{"provider": "groq", "model": "openai/gpt-oss-20b", "timestamp": "2026-05-31T10:30:20.459387Z", "level": "info", "event": "Loading LLM"}
+{"session_id": "session_20260531_123013_e9e1b3a8", "timestamp": "2026-05-31T10:30:21.699037Z", "level": "info", "event": "LLM loaded successfully"}
+{"session_id": "session_20260531_123013_e9e1b3a8", "timestamp": "2026-05-31T10:30:21.701786Z", "level": "info", "event": "ConversationalRAG initialized"}
+{"timestamp": "2026-05-31T10:30:21.701786Z", "level": "info", "event": "Running in LOCAL mode: .env loaded"}
+{"timestamp": "2026-05-31T10:30:21.701786Z", "level": "info", "event": "Loaded GROQ_API_KEY from individual env var"}
+{"timestamp": "2026-05-31T10:30:21.704760Z", "level": "info", "event": "Loaded GOOGLE_API_KEY from individual env var"}
+{"keys": {"GROQ_API_KEY": "gsk_pN...", "GOOGLE_API_KEY": "AQ.Ab8..."}, "timestamp": "2026-05-31T10:30:21.704760Z", "level": "info", "event": "API keys loaded"}
+{"config_keys": ["embedding_model", "retriever", "llm"], "timestamp": "2026-05-31T10:30:21.706765Z", "level": "info", "event": "YAML config loaded"}
+{"provider": "openai", "model": "text-embedding-3-small", "timestamp": "2026-05-31T10:30:21.706765Z", "level": "info", "event": "Loading embedding model"}
+{"session_id": "session_20260531_123013_e9e1b3a8", "timestamp": "2026-05-31T10:30:22.752875Z", "level": "info", "event": "LCEL graph built successfully"}
+{"index_path": "faiss_index\\session_20260531_123013_e9e1b3a8", "index_name": "index", "search_type": "mmr", "k": 5, "fetch_k": 20, "lambda_mult": 0.5, "session_id": "session_20260531_123013_e9e1b3a8", "timestamp": "2026-05-31T10:30:22.752875Z", "level": "info", "event": "FAISS retriever loaded successfully"}
+HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+{"error": "Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}", "timestamp": "2026-05-31T10:30:26.256760Z", "level": "error", "event": "Failed to invoke ConversationalRAG"}

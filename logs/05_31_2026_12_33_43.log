@@ -1,0 +1,59 @@
+{"timestamp": "2026-05-31T10:33:44.321610Z", "level": "info", "event": "Running in LOCAL mode: .env loaded"}
+{"timestamp": "2026-05-31T10:33:44.321610Z", "level": "info", "event": "Loaded GROQ_API_KEY from individual env var"}
+{"timestamp": "2026-05-31T10:33:44.321610Z", "level": "info", "event": "Loaded GOOGLE_API_KEY from individual env var"}
+{"keys": {"GROQ_API_KEY": "gsk_d0...", "GOOGLE_API_KEY": "AQ.Ab8..."}, "timestamp": "2026-05-31T10:33:44.321610Z", "level": "info", "event": "API keys loaded"}
+{"config_keys": ["embedding_model", "retriever", "llm"], "timestamp": "2026-05-31T10:33:44.337245Z", "level": "info", "event": "YAML config loaded"}
+{"session_id": "session_20260531_123344_e7efdc4a", "temp_dir": "data\\session_20260531_123344_e7efdc4a", "faiss_dir": "faiss_index\\session_20260531_123344_e7efdc4a", "sessionized": true, "timestamp": "2026-05-31T10:33:44.342038Z", "level": "info", "event": "ChatIngestor initialized"}
+{"uploaded": "data/NIPS-2017-attention-is-all-you-need-Paper.pdf", "saved_as": "data\\session_20260531_123344_e7efdc4a\\9855a6c3.pdf", "timestamp": "2026-05-31T10:33:44.346541Z", "level": "info", "event": "File saved for ingestion"}
+{"count": 11, "timestamp": "2026-05-31T10:33:44.766291Z", "level": "info", "event": "Documents loaded"}
+{"chunks": 210, "chunk_size": 200, "overlap": 20, "timestamp": "2026-05-31T10:33:44.783546Z", "level": "info", "event": "Documents split"}
+{"provider": "openai", "model": "text-embedding-3-small", "timestamp": "2026-05-31T10:33:44.783546Z", "level": "info", "event": "Loading embedding model"}
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+Loading faiss with AVX512 support.
+Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+Loading faiss with AVX2 support.
+Successfully loaded faiss with AVX2 support.
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+{"added": 1, "index": "faiss_index\\session_20260531_123344_e7efdc4a", "timestamp": "2026-05-31T10:33:46.960754Z", "level": "info", "event": "FAISS index updated"}
+{"k": 5, "fetch_k": 20, "lambda_mult": 0.5, "timestamp": "2026-05-31T10:33:46.960754Z", "level": "info", "event": "Using MMR search"}
+{"timestamp": "2026-05-31T10:33:46.963879Z", "level": "info", "event": "Running in LOCAL mode: .env loaded"}
+{"timestamp": "2026-05-31T10:33:46.963879Z", "level": "info", "event": "Loaded GROQ_API_KEY from individual env var"}
+{"timestamp": "2026-05-31T10:33:46.963879Z", "level": "info", "event": "Loaded GOOGLE_API_KEY from individual env var"}
+{"keys": {"GROQ_API_KEY": "gsk_d0...", "GOOGLE_API_KEY": "AQ.Ab8..."}, "timestamp": "2026-05-31T10:33:46.963879Z", "level": "info", "event": "API keys loaded"}
+{"config_keys": ["embedding_model", "retriever", "llm"], "timestamp": "2026-05-31T10:33:46.966636Z", "level": "info", "event": "YAML config loaded"}
+{"provider": "groq", "model": "openai/gpt-oss-20b", "timestamp": "2026-05-31T10:33:46.966636Z", "level": "info", "event": "Loading LLM"}
+{"session_id": "session_20260531_123344_e7efdc4a", "timestamp": "2026-05-31T10:33:48.027615Z", "level": "info", "event": "LLM loaded successfully"}
+{"session_id": "session_20260531_123344_e7efdc4a", "timestamp": "2026-05-31T10:33:48.027615Z", "level": "info", "event": "ConversationalRAG initialized"}
+{"timestamp": "2026-05-31T10:33:48.030737Z", "level": "info", "event": "Running in LOCAL mode: .env loaded"}
+{"timestamp": "2026-05-31T10:33:48.030737Z", "level": "info", "event": "Loaded GROQ_API_KEY from individual env var"}
+{"timestamp": "2026-05-31T10:33:48.030737Z", "level": "info", "event": "Loaded GOOGLE_API_KEY from individual env var"}
+{"keys": {"GROQ_API_KEY": "gsk_d0...", "GOOGLE_API_KEY": "AQ.Ab8..."}, "timestamp": "2026-05-31T10:33:48.030737Z", "level": "info", "event": "API keys loaded"}
+{"config_keys": ["embedding_model", "retriever", "llm"], "timestamp": "2026-05-31T10:33:48.033748Z", "level": "info", "event": "YAML config loaded"}
+{"provider": "openai", "model": "text-embedding-3-small", "timestamp": "2026-05-31T10:33:48.033748Z", "level": "info", "event": "Loading embedding model"}
+{"session_id": "session_20260531_123344_e7efdc4a", "timestamp": "2026-05-31T10:33:49.019902Z", "level": "info", "event": "LCEL graph built successfully"}
+{"index_path": "faiss_index\\session_20260531_123344_e7efdc4a", "index_name": "index", "search_type": "mmr", "k": 5, "fetch_k": 20, "lambda_mult": 0.5, "session_id": "session_20260531_123344_e7efdc4a", "timestamp": "2026-05-31T10:33:49.019902Z", "level": "info", "event": "FAISS retriever loaded successfully"}
+HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+{"session_id": "session_20260531_123344_e7efdc4a", "user_input": "test", "answer_preview": "I don't know.", "timestamp": "2026-05-31T10:33:52.763690Z", "level": "info", "event": "Chain invoked successfully"}
+HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+{"session_id": "session_20260531_123344_e7efdc4a", "user_input": "what dio you know about llms", "answer_preview": "I don't know.", "timestamp": "2026-05-31T10:34:02.725419Z", "level": "info", "event": "Chain invoked successfully"}
+HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+{"session_id": "session_20260531_123344_e7efdc4a", "user_input": "why", "answer_preview": "I don't know.", "timestamp": "2026-05-31T10:34:05.828278Z", "level": "info", "event": "Chain invoked successfully"}
+HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+{"session_id": "session_20260531_123344_e7efdc4a", "user_input": "what is the attention mechanism?", "answer_preview": "Attention is a mechanism that relates different positions in a sequence, allowing a model to weigh the importance of each part. Self\u2011attention, also c", "timestamp": "2026-05-31T10:34:40.747714Z", "level": "info", "event": "Chain invoked successfully"}
+HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+{"session_id": "session_20260531_123344_e7efdc4a", "user_input": "what is AI", "answer_preview": "I don't know.", "timestamp": "2026-05-31T10:34:46.687974Z", "level": "info", "event": "Chain invoked successfully"}
+HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+{"session_id": "session_20260531_123344_e7efdc4a", "user_input": "what is the transformer architecture?", "answer_preview": "The Transformer is a model architecture that eschews recurrence and relies entirely on an attention mechanism to capture global dependencies between i", "timestamp": "2026-05-31T10:34:55.481019Z", "level": "info", "event": "Chain invoked successfully"}
