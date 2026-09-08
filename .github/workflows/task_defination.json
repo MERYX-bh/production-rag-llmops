@@ -1,0 +1,48 @@
+{
+    "family": "llmopstdlive",
+    "networkMode": "awsvpc",
+    "executionRoleArn": "arn:aws:iam::306570692493:role/ecsTaskExecutionRole",
+    "requiresCompatibilities": ["FARGATE"],
+    "cpu": "1024",
+    "memory": "8192",
+    "containerDefinitions": [
+      {
+        "name": "llmops-live-container",
+        "image": "306570692493.dkr.ecr.us-east-1.amazonaws.com/llmopsrepolive",
+        "cpu": 1024,
+        "essential": true,
+        "portMappings": [
+          {
+            "containerPort": 8080,
+            "hostPort": 8080,
+            "protocol": "tcp",
+            "name": "llmops-live-container-8080-tcp",
+            "appProtocol": "http"
+          }
+        ],
+        "environment": [
+          {
+            "name": "ENV",
+            "value": "production"
+          }
+        ],
+        "secrets": [
+          {
+            "name": "apikeyliveclass",
+            "valueFrom": "arn:aws:secretsmanager:us-east-1:306570692493:secret:apikeyliveclass-EykEZf"
+          }
+  
+        ],
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "/ecs/llmopstdlive",
+            "awslogs-region": "us-east-1",
+            "awslogs-stream-prefix": "ecs",
+            "awslogs-create-group": "true"
+          }
+        }
+      }
+    ]
+  }
+  
