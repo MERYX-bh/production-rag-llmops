@@ -3,7 +3,7 @@ on:
   workflow_run:
     workflows: ["CI"] # Must match the "name" field in ci.yml
     branches:
-      - main
+      - main  #the main branch
       - DeployOnAWS
     types:
       - completed
