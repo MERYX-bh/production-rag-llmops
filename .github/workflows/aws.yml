@@ -9,7 +9,7 @@ on:
       - completed
   workflow_call:
 env:
-  AWS_REGION: us-east-1
+  AWS_REGION: eu-north-1
   ECR_REPOSITORY: llmopsrepolive
   ECS_SERVICE: llmops-live-service
   ECS_CLUSTER: llmops-live-cluster

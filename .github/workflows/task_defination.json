@@ -1,7 +1,7 @@
 {
     "family": "llmopstdlive",
     "networkMode": "awsvpc",
-    "executionRoleArn": "arn:aws:iam::919927637634:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+    "executionRoleArn": "arn:aws:iam::919927637634:role/ecsTaskExecutionRole",
     "requiresCompatibilities": ["FARGATE"],
     "cpu": "1024",
     "memory": "8192",
@@ -37,7 +37,7 @@
           "logDriver": "awslogs",
           "options": {
             "awslogs-group": "/ecs/llmopstdlive",
-            "awslogs-region": "us-east-1",
+            "awslogs-region": "eu-north-1",
             "awslogs-stream-prefix": "ecs",
             "awslogs-create-group": "true"
           }
