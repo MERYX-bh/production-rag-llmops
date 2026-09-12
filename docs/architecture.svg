@@ -1,0 +1,224 @@
+<svg viewBox="0 0 1280 1260" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#64748b"/>
+    </marker>
+    <marker id="arrowDash" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1280" height="1260" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="640" y="34" text-anchor="middle" font-size="24" font-weight="700" fill="#0f172a">MultiDocChat — Architecture</text>
+  <text x="640" y="54" text-anchor="middle" font-size="13" fill="#475569">RAG conversationnel multi-documents · FastAPI + LangChain (LCEL) + FAISS</text>
+
+  <!-- Legend -->
+  <g font-size="10.5" fill="#334155">
+    <rect x="1000" y="8" width="12" height="12" fill="#E3F2FD" stroke="#1565C0"/><text x="1016" y="18">Client</text>
+    <rect x="1000" y="24" width="12" height="12" fill="#EDE7F6" stroke="#4527A0"/><text x="1016" y="34">API</text>
+    <rect x="1060" y="8" width="12" height="12" fill="#E8F5E9" stroke="#2E7D32"/><text x="1076" y="18">Ingestion</text>
+    <rect x="1060" y="24" width="12" height="12" fill="#FFF3E0" stroke="#E65100"/><text x="1076" y="34">RAG chat</text>
+    <rect x="1150" y="8" width="12" height="12" fill="#FFFDE7" stroke="#F9A825"/><text x="1166" y="18">Modèles/Config</text>
+    <rect x="1150" y="24" width="12" height="12" fill="#ECEFF1" stroke="#37474F"/><text x="1166" y="34">Storage/Logs</text>
+  </g>
+
+  <!-- Client -->
+  <rect x="430" y="72" width="420" height="64" rx="10" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5"/>
+  <text x="640" y="94" text-anchor="middle" font-size="14" font-weight="600" fill="#0d47a1">Client — Navigateur</text>
+  <text x="640" y="112" text-anchor="middle" font-size="11" fill="#1e3a5f">templates/index.html + static/styles.css</text>
+  <text x="640" y="126" text-anchor="middle" font-size="11" fill="#1e3a5f">Upload par drag &amp; drop · Widget de chat (fetch JSON)</text>
+
+  <line x1="640" y1="136" x2="640" y2="166" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="652" y="154" font-size="10.5" fill="#64748b">HTTP</text>
+
+  <!-- API -->
+  <rect x="140" y="170" width="1000" height="120" rx="12" fill="#EDE7F6" stroke="#4527A0" stroke-width="1.5"/>
+  <text x="160" y="192" font-size="15" font-weight="700" fill="#311B92">API — FastAPI (main.py)</text>
+
+  <rect x="165" y="205" width="205" height="60" rx="8" fill="#ffffff" stroke="#4527A0"/>
+  <text x="267" y="228" text-anchor="middle" font-size="11.5" font-weight="600" fill="#311B92">GET /</text>
+  <text x="267" y="244" text-anchor="middle" font-size="10.5" fill="#4a3b7a">sert index.html</text>
+
+  <rect x="400" y="205" width="220" height="60" rx="8" fill="#ffffff" stroke="#4527A0"/>
+  <text x="510" y="228" text-anchor="middle" font-size="11.5" font-weight="600" fill="#311B92">POST /upload</text>
+  <text x="510" y="244" text-anchor="middle" font-size="10.5" fill="#4a3b7a">UploadFile[] → indexation FAISS</text>
+
+  <rect x="650" y="205" width="220" height="60" rx="8" fill="#ffffff" stroke="#4527A0"/>
+  <text x="760" y="228" text-anchor="middle" font-size="11.5" font-weight="600" fill="#311B92">POST /chat</text>
+  <text x="760" y="244" text-anchor="middle" font-size="10.5" fill="#4a3b7a">{session_id, message} → réponse</text>
+
+  <rect x="900" y="205" width="215" height="60" rx="8" fill="#ffffff" stroke="#4527A0"/>
+  <text x="1007" y="228" text-anchor="middle" font-size="11.5" font-weight="600" fill="#311B92">GET /health</text>
+  <text x="1007" y="244" text-anchor="middle" font-size="10.5" fill="#4a3b7a">liveness check</text>
+
+  <!-- API -> Ingestion / RAG -->
+  <line x1="510" y1="265" x2="330" y2="318" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="760" y1="265" x2="950" y2="318" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Ingestion Pipeline -->
+  <rect x="40" y="320" width="580" height="300" rx="12" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="60" y="345" font-size="14" font-weight="700" fill="#1B5E20">Pipeline d'ingestion — ChatIngestor</text>
+
+  <rect x="60" y="357" width="540" height="52" rx="8" fill="#ffffff" stroke="#2E7D32"/>
+  <text x="70" y="376" font-size="11.5" font-weight="600" fill="#1B5E20">1. save_uploaded_files()</text>
+  <text x="70" y="392" font-size="10.5" fill="#2e5c31">→ data/&lt;session_id&gt;/*.ext (pdf · docx · txt), nom sûr</text>
+
+  <rect x="60" y="415" width="540" height="52" rx="8" fill="#ffffff" stroke="#2E7D32"/>
+  <text x="70" y="434" font-size="11.5" font-weight="600" fill="#1B5E20">2. load_documents()</text>
+  <text x="70" y="450" font-size="10.5" fill="#2e5c31">PyPDFLoader · Docx2txtLoader · TextLoader</text>
+
+  <rect x="60" y="473" width="540" height="52" rx="8" fill="#ffffff" stroke="#2E7D32"/>
+  <text x="70" y="492" font-size="11.5" font-weight="600" fill="#1B5E20">3. RecursiveCharacterTextSplitter</text>
+  <text x="70" y="508" font-size="10.5" fill="#2e5c31">chunk_size=1000, chunk_overlap=200</text>
+
+  <rect x="60" y="531" width="540" height="72" rx="8" fill="#ffffff" stroke="#2E7D32"/>
+  <text x="70" y="550" font-size="11.5" font-weight="600" fill="#1B5E20">4. FaissManager</text>
+  <text x="70" y="566" font-size="10.5" fill="#2e5c31">load_or_create() + add_documents() — déduplication</text>
+  <text x="70" y="580" font-size="10.5" fill="#2e5c31">par empreinte (source + row_id, sinon SHA-256)</text>
+  <text x="70" y="594" font-size="10.5" fill="#2e5c31">→ écrit faiss_index/&lt;session_id&gt;/ (voir Storage)</text>
+
+  <!-- RAG Pipeline -->
+  <rect x="660" y="320" width="580" height="300" rx="12" fill="#FFF3E0" stroke="#E65100" stroke-width="1.5"/>
+  <text x="680" y="345" font-size="14" font-weight="700" fill="#BF360C">RAG conversationnel — ConversationalRAG (LCEL)</text>
+
+  <rect x="680" y="357" width="540" height="46" rx="8" fill="#ffffff" stroke="#E65100"/>
+  <text x="690" y="374" font-size="11.5" font-weight="600" fill="#BF360C">1. load_retriever_from_faiss()</text>
+  <text x="690" y="390" font-size="10.5" fill="#7a3a0e">FAISS.load_local → recherche MMR (fetch_k=20, λ=0.5)</text>
+
+  <rect x="680" y="409" width="540" height="46" rx="8" fill="#ffffff" stroke="#E65100"/>
+  <text x="690" y="426" font-size="11.5" font-weight="600" fill="#BF360C">2. contextualize_question_prompt + LLM</text>
+  <text x="690" y="442" font-size="10.5" fill="#7a3a0e">reformule la question à partir de l'historique</text>
+
+  <rect x="680" y="461" width="540" height="46" rx="8" fill="#ffffff" stroke="#E65100"/>
+  <text x="690" y="478" font-size="11.5" font-weight="600" fill="#BF360C">3. retriever.invoke() (MMR)</text>
+  <text x="690" y="494" font-size="10.5" fill="#7a3a0e">passages pertinents ET diversifiés (top_k)</text>
+
+  <rect x="680" y="513" width="540" height="46" rx="8" fill="#ffffff" stroke="#E65100"/>
+  <text x="690" y="530" font-size="11.5" font-weight="600" fill="#BF360C">4. context_qa_prompt + LLM</text>
+  <text x="690" y="546" font-size="10.5" fill="#7a3a0e">génère la réponse (contexte + historique)</text>
+
+  <rect x="680" y="565" width="540" height="38" rx="8" fill="#ffffff" stroke="#E65100"/>
+  <text x="690" y="582" font-size="11.5" font-weight="600" fill="#BF360C">5. Validation Pydantic ChatAnswer</text>
+  <text x="690" y="596" font-size="10.5" fill="#7a3a0e">1–4096 caractères → réponse finale renvoyée au client</text>
+
+  <!-- cross dependency: storage read by RAG -->
+  <path d="M 610 610 C 660 640, 660 560, 690 470" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="5,4" marker-end="url(#arrowDash)"/>
+  <text x="612" y="650" font-size="10" fill="#64748b">lit l'index FAISS</text>
+  <text x="612" y="662" font-size="10" fill="#64748b">écrit par l'ingestion</text>
+
+  <!-- Ingestion/RAG -> Shared -->
+  <line x1="330" y1="620" x2="330" y2="648" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="950" y1="620" x2="950" y2="648" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Shared Model/Config layer -->
+  <rect x="40" y="650" width="1200" height="140" rx="12" fill="#FFFDE7" stroke="#F9A825" stroke-width="1.5"/>
+  <text x="60" y="674" font-size="14" font-weight="700" fill="#8D6E00">Couche partagée — Modèles &amp; Configuration (ModelLoader / ApiKeyManager)</text>
+
+  <rect x="60" y="686" width="280" height="88" rx="8" fill="#ffffff" stroke="#F9A825"/>
+  <text x="70" y="704" font-size="11.5" font-weight="600" fill="#8D6E00">config.yaml</text>
+  <text x="70" y="719" font-size="10.2" fill="#6b5900">embedding: text-embedding-3-small</text>
+  <text x="70" y="732" font-size="10.2" fill="#6b5900">llm.groq: gpt-oss-20b</text>
+  <text x="70" y="745" font-size="10.2" fill="#6b5900">llm.openai: gpt-4o-mini</text>
+  <text x="70" y="758" font-size="10.2" fill="#6b5900">retriever: top_k=10, mmr, fetch_k=20</text>
+
+  <rect x="355" y="686" width="280" height="88" rx="8" fill="#ffffff" stroke="#F9A825"/>
+  <text x="365" y="704" font-size="11.5" font-weight="600" fill="#8D6E00">ApiKeyManager</text>
+  <text x="365" y="719" font-size="10.2" fill="#6b5900">.env (local) ou secret ECS "apikeyliveclass"</text>
+  <text x="365" y="732" font-size="10.2" fill="#6b5900">requis: GROQ_API_KEY, GOOGLE_API_KEY</text>
+  <text x="365" y="745" font-size="10.2" fill="#6b5900">optionnel: OPENAI_API_KEY</text>
+  <text x="365" y="758" font-size="10.2" fill="#6b5900">LLM_PROVIDER=google|groq|openai</text>
+
+  <rect x="650" y="686" width="280" height="88" rx="8" fill="#ffffff" stroke="#F9A825"/>
+  <text x="660" y="704" font-size="11.5" font-weight="600" fill="#8D6E00">load_embeddings()</text>
+  <text x="660" y="722" font-size="10.2" fill="#6b5900">OpenAIEmbeddings</text>
+  <text x="660" y="737" font-size="10.2" fill="#6b5900">GoogleGenerativeAIEmbeddings</text>
+
+  <rect x="945" y="686" width="280" height="88" rx="8" fill="#ffffff" stroke="#F9A825"/>
+  <text x="955" y="704" font-size="11.5" font-weight="600" fill="#8D6E00">load_llm()</text>
+  <text x="955" y="722" font-size="10.2" fill="#6b5900">ChatGroq · ChatGoogleGenerativeAI</text>
+  <text x="955" y="737" font-size="10.2" fill="#6b5900">ChatOpenAI</text>
+
+  <!-- Shared -> Providers -->
+  <line x1="790" y1="774" x2="790" y2="800" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="5,4" marker-end="url(#arrowDash)"/>
+  <line x1="1085" y1="774" x2="1085" y2="800" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="5,4" marker-end="url(#arrowDash)"/>
+
+  <!-- Providers pills -->
+  <rect x="640" y="800" width="150" height="34" rx="17" fill="#ffffff" stroke="#F9A825" stroke-dasharray="4,3"/>
+  <text x="715" y="821" text-anchor="middle" font-size="10.5" fill="#8D6E00">OpenAI API</text>
+  <rect x="800" y="800" width="150" height="34" rx="17" fill="#ffffff" stroke="#F9A825" stroke-dasharray="4,3"/>
+  <text x="875" y="821" text-anchor="middle" font-size="10.5" fill="#8D6E00">Google Gemini API</text>
+  <rect x="960" y="800" width="150" height="34" rx="17" fill="#ffffff" stroke="#F9A825" stroke-dasharray="4,3"/>
+  <text x="1035" y="821" text-anchor="middle" font-size="10.5" fill="#8D6E00">Groq API</text>
+
+  <!-- down to storage/observability -->
+  <line x1="330" y1="774" x2="330" y2="866" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="950" y1="834" x2="950" y2="866" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Storage -->
+  <rect x="40" y="866" width="580" height="150" rx="12" fill="#ECEFF1" stroke="#37474F" stroke-width="1.5"/>
+  <text x="60" y="891" font-size="14" font-weight="700" fill="#263238">Stockage</text>
+
+  <rect x="60" y="902" width="540" height="52" rx="8" fill="#ffffff" stroke="#37474F"/>
+  <text x="70" y="921" font-size="11.5" font-weight="600" fill="#263238">faiss_index/&lt;session_id&gt;/</text>
+  <text x="70" y="937" font-size="10.2" fill="#455a64">index.faiss · index.pkl · ingested_meta.json</text>
+
+  <rect x="60" y="960" width="540" height="46" rx="8" fill="#ffffff" stroke="#37474F"/>
+  <text x="70" y="978" font-size="11.5" font-weight="600" fill="#263238">data/&lt;session_id&gt;/</text>
+  <text x="70" y="994" font-size="10.2" fill="#455a64">fichiers sources uploadés (pdf/docx/txt)</text>
+
+  <!-- Observability -->
+  <rect x="660" y="866" width="580" height="150" rx="12" fill="#ECEFF1" stroke="#37474F" stroke-width="1.5"/>
+  <text x="680" y="891" font-size="14" font-weight="700" fill="#263238">Observabilité &amp; erreurs</text>
+
+  <rect x="680" y="902" width="540" height="52" rx="8" fill="#ffffff" stroke="#37474F"/>
+  <text x="690" y="921" font-size="11.5" font-weight="600" fill="#263238">structlog (CustomLogger)</text>
+  <text x="690" y="937" font-size="10.2" fill="#455a64">logs/MM_DD_YYYY_HH_MM_SS.log — JSON, console + fichier</text>
+
+  <rect x="680" y="960" width="540" height="46" rx="8" fill="#ffffff" stroke="#37474F"/>
+  <text x="690" y="978" font-size="11.5" font-weight="600" fill="#263238">DocumentPortalException</text>
+  <text x="690" y="994" font-size="10.2" fill="#455a64">capture fichier/ligne/traceback pour toutes les erreurs métier</text>
+
+  <!-- CI/CD strip -->
+  <rect x="40" y="1035" width="1200" height="205" rx="12" fill="#FCE4EC" stroke="#AD1457" stroke-width="1.5"/>
+  <text x="60" y="1060" font-size="14" font-weight="700" fill="#880E4F">CI/CD — GitHub Actions → Docker → Amazon ECR → ECS Fargate</text>
+
+  <rect x="55" y="1075" width="185" height="90" rx="8" fill="#ffffff" stroke="#AD1457"/>
+  <text x="147" y="1098" text-anchor="middle" font-size="11" font-weight="600" fill="#880E4F">Push / PR</text>
+  <text x="147" y="1113" text-anchor="middle" font-size="10" fill="#7a1145">vers "main"</text>
+
+  <rect x="255" y="1075" width="185" height="90" rx="8" fill="#ffffff" stroke="#AD1457"/>
+  <text x="347" y="1096" text-anchor="middle" font-size="11" font-weight="600" fill="#880E4F">CI (ci.yml)</text>
+  <text x="347" y="1111" text-anchor="middle" font-size="10" fill="#7a1145">uv sync --frozen</text>
+  <text x="347" y="1124" text-anchor="middle" font-size="10" fill="#7a1145">uv run pytest -q</text>
+
+  <rect x="455" y="1075" width="185" height="90" rx="8" fill="#ffffff" stroke="#AD1457"/>
+  <text x="547" y="1096" text-anchor="middle" font-size="11" font-weight="600" fill="#880E4F">Gate</text>
+  <text x="547" y="1111" text-anchor="middle" font-size="10" fill="#7a1145">CI verte sur main</text>
+  <text x="547" y="1124" text-anchor="middle" font-size="10" fill="#7a1145">(aws.yml, workflow_run)</text>
+
+  <rect x="655" y="1075" width="185" height="90" rx="8" fill="#ffffff" stroke="#AD1457"/>
+  <text x="747" y="1096" text-anchor="middle" font-size="11" font-weight="600" fill="#880E4F">Build &amp; Push</text>
+  <text x="747" y="1111" text-anchor="middle" font-size="10" fill="#7a1145">Docker → Amazon ECR</text>
+  <text x="747" y="1124" text-anchor="middle" font-size="10" fill="#7a1145">llmopsrepolive</text>
+
+  <rect x="855" y="1075" width="185" height="90" rx="8" fill="#ffffff" stroke="#AD1457"/>
+  <text x="947" y="1096" text-anchor="middle" font-size="11" font-weight="600" fill="#880E4F">Render task def</text>
+  <text x="947" y="1111" text-anchor="middle" font-size="10" fill="#7a1145">task_defination.json</text>
+
+  <rect x="1055" y="1075" width="150" height="90" rx="8" fill="#ffffff" stroke="#AD1457"/>
+  <text x="1130" y="1096" text-anchor="middle" font-size="11" font-weight="600" fill="#880E4F">Deploy</text>
+  <text x="1130" y="1111" text-anchor="middle" font-size="10" fill="#7a1145">ECS Fargate</text>
+  <text x="1130" y="1124" text-anchor="middle" font-size="10" fill="#7a1145">llmops-live-cluster</text>
+
+  <line x1="240" y1="1120" x2="255" y2="1120" stroke="#AD1457" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="440" y1="1120" x2="455" y2="1120" stroke="#AD1457" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="640" y1="1120" x2="655" y2="1120" stroke="#AD1457" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="840" y1="1120" x2="855" y2="1120" stroke="#AD1457" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="1040" y1="1120" x2="1055" y2="1120" stroke="#AD1457" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <text x="60" y="1185" font-size="10.5" fill="#7a1145">Dockerfile : python:3.12-slim · uv · poppler-utils · PYTHONPATH=/app:/app/multi_doc_chat · uvicorn sur le port 8080</text>
+  <text x="60" y="1202" font-size="10.5" fill="#7a1145">Région AWS : eu-north-1 · service : llmops-live-service · conteneur : llmops-live-container</text>
+  <text x="60" y="1222" font-size="10.5" fill="#7a1145">Authentification AWS via OIDC (permissions id-token: write) — pas de clés long-terme dans le repo</text>
+</svg>
