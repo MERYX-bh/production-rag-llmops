@@ -206,5 +206,3 @@ Les tests (`tests/unit`, `tests/integration`) utilisent des doublures (`stub_mod
 - Aucun fichier de licence n'est présent dans le dépôt.
 
 ---
-
-Généré avec l'aide de [Claude Code](https://claude.com/claude-code).
