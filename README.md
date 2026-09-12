@@ -203,6 +203,5 @@ Les tests (`tests/unit`, `tests/integration`) utilisent des doublures (`stub_mod
 
 - L'historique de conversation (`SESSIONS`) est **en mémoire process** : il est perdu au redémarrage de l'application et ne fonctionne pas s'il y a plusieurs workers/instances derrière un load balancer.
 - Pas de suppression automatique des sessions : `data/<session_id>/` et `faiss_index/<session_id>/` s'accumulent avec le temps.
-- Aucun fichier de licence n'est présent dans le dépôt.
 
 ---
